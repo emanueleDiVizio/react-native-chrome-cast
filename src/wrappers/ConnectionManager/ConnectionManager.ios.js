@@ -7,7 +7,7 @@ const { GoogleCast } = NativeModules;
 const ChromecastEmitter = new NativeEventEmitter(GoogleCast);
 
 
-export default class ConnectionManager {
+export default class ChromeCastConnectionManager {
   constructor() {
     this.chromeCastDeviceConnected = cb => ChromecastEmitter.addListener(
       DevicesStatus.DEVICE_CONNECTED,

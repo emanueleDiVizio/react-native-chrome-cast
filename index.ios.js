@@ -1,7 +1,7 @@
 import { NativeModules, requireNativeComponent } from 'react-native';
 import Scanner from './src/wrappers/Scanner';
 import Playback from './src/wrappers/Playback';
-import ConnectionManager from './src/wrappers/ConnectionManager';
+import ConnectionManager from './src/wrappers/ConnectionManager/index';
 
 const { GoogleCast } = NativeModules;
 
