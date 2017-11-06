@@ -1,3 +1,3 @@
-import ChromeCastScanner from './scanner';
+import ChromeCastScanner from './Scanner';
 
-export default ChromeCastScanner
+export default ChromeCastScanner;

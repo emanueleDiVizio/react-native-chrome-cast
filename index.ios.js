@@ -1,45 +1,42 @@
 import { NativeModules, requireNativeComponent } from 'react-native';
+import Scanner from './src/wrappers/Scanner';
+import Playback from './src/wrappers/Playback';
+import ConnectionManager from './src/wrappers/ConnectionManager';
 
 const { GoogleCast } = NativeModules;
 
-console.log(GoogleCast);
 
-export default {
-  startScan: function () {
-	GoogleCast.startScan();
-  },
-  stopScan: function () {
-	GoogleCast.stopScan();
-  },
-  isConnected: function () {
-	return GoogleCast.isConnected();
-  },
-  getDevices: function () {
-	return GoogleCast.getDevices();
-  },
-  connectToDevice: function (deviceId: string) {
-	GoogleCast.connectToDevice(deviceId);
-  },
-  disconnect: function () {
-	GoogleCast.disconnect();
-  },
-  castMedia: function (mediaUrl: string, title: string, imageUrl: string, seconds: number = 0) {
-	GoogleCast.castMedia(mediaUrl, title, imageUrl, seconds);
-  },
-  seekCast: function (seconds: number) {
-	GoogleCast.seekCast(seconds);
-  },
-  togglePauseCast: function () {
-	GoogleCast.togglePauseCast();
-  },
-  getStreamPosition: function () {
-	return GoogleCast.getStreamPosition();
-  },
-  DEVICE_AVAILABLE: GoogleCast.DEVICE_AVAILABLE,
-  DEVICES_UPDATED: GoogleCast.DEVICES_UPDATED,
-  DEVICE_CONNECTED: GoogleCast.DEVICE_CONNECTED,
-  DEVICE_DISCONNECTED: GoogleCast.DEVICE_DISCONNECTED,
-  MEDIA_LOADED: GoogleCast.MEDIA_LOADED,
-};
+export const ChromeCastScanner = Scanner;
+export const ChromeCast = GoogleCast;
+export const ChromeCastPlayback = Playback;
+export const ChromeCastConnectionManager = ConnectionManager;
+export const button = requireNativeComponent('GoogleCast', null);
 
-export const button =   requireNativeComponent('GoogleCast', null);
+
+// export default {
+//
+//   isConnected() {
+//     return GoogleCast.isConnected();
+//   },
+//   getDevices() {
+//     return GoogleCast.getDevices();
+//   },
+//   connectToDevice(deviceId: string) {
+//     GoogleCast.connectToDevice(deviceId);
+//   },
+//   disconnect() {
+//     GoogleCast.disconnect();
+//   },
+//   castMedia(mediaUrl: string, title: string, imageUrl: string, seconds: number = 0) {
+//     GoogleCast.castMedia(mediaUrl, title, imageUrl, seconds);
+//   },
+//   seekCast(seconds: number) {
+//     GoogleCast.seekCast(seconds);
+//   },
+//   togglePauseCast() {
+//     GoogleCast.togglePauseCast();
+//   },
+//   getStreamPosition() {
+//     return GoogleCast.getStreamPosition();
+//   },
+// };
