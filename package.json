@@ -15,5 +15,16 @@
     "react-native": "^0.41.2",
     "react-native-windows": "0.41.0-rc.1",
     "react": "16.0.0-alpha.12"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint": "^4.8.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^7.4.0"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.0"
   }
 }
