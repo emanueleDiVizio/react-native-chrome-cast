@@ -10,7 +10,7 @@ export default class ChromeCastScanner {
   chromeCastDeviceAvailable = cb => ChromecastEmitter.addListener(
     DevicesStatus.DEVICE_AVAILABLE,
     e => cb({
-      devicesAvailable: e.devices_available,
+      devicesAvailable: e.device_available,
     }));
   chromeCastDeviceUpdated = cb => ChromecastEmitter.addListener(
     DevicesStatus.DEVICES_UPDATED,
