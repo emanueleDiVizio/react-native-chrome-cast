@@ -31,6 +31,28 @@ public class Constants {
   public static final String DEVICE_CONNECTING_STRING = "DEVICE_CONNECTING";
   public static final String SESSION_STATUS_MESSAGE_STRING = "SESSION_STATUS_MESSAGE";
 
+  public static final String PLAYBACK_ACTION = " PLAYBACK_ACTION";
+  public static final String ACTION_FORWARD = "ACTION_FORWARD";
+  public static final String ACTION_REWIND = " ACTION_REWIND";
+  public static final String ACTION_SKIP_NEXT = "ACTION_SKIP_NEXT";
+  public static final String ACTION_SKIP_PREV = "ACTION_SKIP_PREV";
+  public static final String ACTION_STOP_CASTING = "ACTION_STOP_CASTING";
+  public static final String ACTION_TOGGLE_PLAYBACK = " ACTION_TOGGLE_PLAYBACK";
+  public static final String ACTION_OTHER = " ACTION_OTHER";
+  public static final String ACTION_MEDIA_BUTTON = " ACTION_MEDIA_BUTTON";
+
+
+
+  public static final String CAST_PLAYBACK_EVENT = "CastPlaybackEvent";
+  public static final String CAST_SCAN_EVENT = "CastScanEvent";
+  public static final String CAST_SCREEN_EVENT = "CastScreenEvent";
+  public static final String CAST_SESSION_EVENT = "CastSessionEvent";
+
+
+  public static final String CAST_SCREEN_ACTION = "CAST_SCREEN_ACTION";
+  public static final String ON_SCREEN_OPEN = "ON_SCREEN_OPEN";
+  public static final String ON_SCREEN_CLOSE = "ON_SCREEN_CLOSE";
+
 
   public static String intToString(int status){
     switch(status){

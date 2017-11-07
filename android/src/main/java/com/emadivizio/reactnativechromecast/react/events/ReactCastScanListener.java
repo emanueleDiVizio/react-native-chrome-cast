@@ -25,7 +25,7 @@ public class ReactCastScanListener implements CastDeviceScanner.CastScanListener
     map.putBoolean(Constants.DEVICE_CONNECTED_STRING, false);
     map.putBoolean(Constants.DEVICE_CONNECTING_STRING, false);
     mReactContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
-          .emit("ChromeCastScanEvent", map);
+          .emit(Constants.CAST_SCAN_EVENT, map);
   }
 
   @Override
@@ -35,7 +35,7 @@ public class ReactCastScanListener implements CastDeviceScanner.CastScanListener
     map.putBoolean(Constants.DEVICE_CONNECTED_STRING, false);
     map.putBoolean(Constants.DEVICE_CONNECTING_STRING, true);
     mReactContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
-          .emit("ChromeCastScanEvent", map);
+          .emit(Constants.CAST_SCAN_EVENT, map);
   }
 
   @Override
@@ -45,7 +45,7 @@ public class ReactCastScanListener implements CastDeviceScanner.CastScanListener
     map.putBoolean(Constants.DEVICE_CONNECTED_STRING, true);
     map.putBoolean(Constants.DEVICE_CONNECTING_STRING, false);
     mReactContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
-          .emit("ChromeCastScanEvent", map);
+          .emit(Constants.CAST_SCAN_EVENT, map);
   }
 
   @Override
@@ -55,6 +55,6 @@ public class ReactCastScanListener implements CastDeviceScanner.CastScanListener
     map.putBoolean(Constants.DEVICE_CONNECTED_STRING, false);
     map.putBoolean(Constants.DEVICE_CONNECTING_STRING, false);
     mReactContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
-          .emit("ChromeCastScanEvent", map);
+          .emit(Constants.CAST_SCAN_EVENT, map);
   }
 }

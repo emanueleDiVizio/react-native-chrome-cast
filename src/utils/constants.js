@@ -9,3 +9,10 @@ export const SessionStatus = Object.freeze({
   RESUME_FAILED: 7,
   SUSPENDED: 8,
 });
+
+export const Events = Object.freeze({
+  CAST_PLAYBACK: 'CastPlaybackEvent',
+  CAST_SCAN: 'CastScanEvent',
+  CAST_SCREEN: 'CastScreenEvent',
+  CAST_SESSION: 'CastSessionEvent',
+});

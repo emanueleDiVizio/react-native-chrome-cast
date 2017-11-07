@@ -4,8 +4,8 @@ import { Events } from '../../utils/constants';
 
 export default class ChromeCastPlayback {
   listenForPlaybackEvents = cb =>
-    DeviceEventEmitter.addListener(Events.CAST_PLAYBACK, (e) => {
-      cb({ action: e.PLAYBACK_ACTION, arg: e[e.PLAYBACK_ACTION] });
+    DeviceEventEmitter.addListener(Events.CAST_SCREEN, (e) => {
+      cb({ action: e.CAST_SCREEN_ACTION });
     });
 
   startScan(cb) {

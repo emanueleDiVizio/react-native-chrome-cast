@@ -25,6 +25,7 @@ import com.google.android.gms.cast.framework.SessionProvider;
 import com.google.android.gms.cast.framework.media.CastMediaOptions;
 import com.google.android.gms.cast.framework.media.MediaIntentReceiver;
 import com.google.android.gms.cast.framework.media.NotificationOptions;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -42,6 +43,7 @@ public class CastOptionsProvider implements OptionsProvider {
 //                .setTargetActivityClassName(ExpandedControlsActivity.class.getName())
                 .build();
         CastMediaOptions mediaOptions = new CastMediaOptions.Builder()
+                .setMediaIntentReceiverClassName(CastMediaIntentReceiver.class.getName())
 //                .setImagePicker(new ImagePickerImpl())
                 .setNotificationOptions(notificationOptions)
 //                .setExpandedControllerActivityClassName(ExpandedControlsActivity.class.getName())

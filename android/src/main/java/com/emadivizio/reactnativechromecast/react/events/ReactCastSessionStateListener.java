@@ -1,7 +1,5 @@
 package com.emadivizio.reactnativechromecast.react.events;
 
-import android.util.Log;
-
 import com.emadivizio.reactnativechromecast.sdk.cast.CastDeviceScanner;
 import com.emadivizio.reactnativechromecast.util.Constants;
 import com.facebook.react.bridge.Arguments;
@@ -21,12 +19,11 @@ public class ReactCastSessionStateListener implements CastDeviceScanner.SessionS
   }
 
   private void sendEvent(int status) {
-    Log.d("EVENT", String.valueOf(status));
     WritableMap map = Arguments.createMap();
     map.putInt(Constants.SESSION_STATUS_STRING, status);
     map.putString(Constants.SESSION_STATUS_MESSAGE_STRING, Constants.intToString(status));
     mReactContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
-          .emit("ChromeCastSessionEvent", map);
+          .emit(Constants.CAST_SESSION_EVENT, map);
   }
 
   @Override
