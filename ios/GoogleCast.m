@@ -179,6 +179,7 @@ RCT_REMAP_METHOD(getStreamPosition,
 
 - (void)deviceManagerDidConnect:(GCKDeviceManager *)deviceManager {
   // Launch application after getting connected.
+  [self emitMessageToRN:DEVICE_CONNECTED :nil];
   [_deviceManager launchApplication: kGCKMediaDefaultReceiverApplicationID];
 }
 
