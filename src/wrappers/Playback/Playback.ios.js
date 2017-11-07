@@ -5,8 +5,8 @@ const { GoogleCast } = NativeModules;
 const ChromecastEmitter = new NativeEventEmitter(GoogleCast);
 
 export default class ChromeCastPlayback {
-  onChromeCastMediaLoaded = (cb) => {
-    ChromecastEmitter.addListener(PlaybackStatus.MEDIA_LOADED, () =>
+  onChromeCastMediaLoaded(cb) {
+    this.mediaLoaded = ChromecastEmitter.addListener(PlaybackStatus.MEDIA_LOADED, () =>
       cb({
         playing: true,
       }),
@@ -14,7 +14,7 @@ export default class ChromeCastPlayback {
   }
 
   startMediaLoadedListener(cb) {
-    this.mediaLoaded = this.onChromeCastMediaLoaded(cb);
+    this.onChromeCastMediaLoaded(cb);
   }
 
   stopMediaLoadedListener() {

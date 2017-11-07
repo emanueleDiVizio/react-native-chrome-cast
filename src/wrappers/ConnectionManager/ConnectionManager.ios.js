@@ -7,19 +7,23 @@ const { GoogleCast } = NativeModules;
 const ChromecastEmitter = new NativeEventEmitter(GoogleCast);
 
 export default class ChromeCastConnectionManager {
-  chromeCastDeviceConnected = cb =>
-    ChromecastEmitter.addListener(DevicesStatus.DEVICE_CONNECTED, () =>
-      cb({ status: SessionStatus.STARTED, message: '' }),
+  chromeCastDeviceConnected = (cb) => {
+    this.connectedListener = ChromecastEmitter.addListener(
+      DevicesStatus.DEVICE_CONNECTED, () =>
+        cb({ status: SessionStatus.STARTED, message: '' }),
     );
+  }
 
-  chromeCastDeviceDisconnected = cb =>
-    ChromecastEmitter.addListener(DevicesStatus.DEVICE_DISCONNECTED, () =>
-      cb({ status: SessionStatus.ENDED, message: '' }),
+  chromeCastDeviceDisconnected = (cb) => {
+    this.disconnectedListener = ChromecastEmitter.addListener(
+      DevicesStatus.DEVICE_DISCONNECTED, () =>
+        cb({ status: SessionStatus.ENDED, message: '' }),
     );
+  }
 
   startConnectionListener(cb) {
-    this.connectedListener = this.chromeCastDeviceConnected(cb);
-    this.disconnectedListener = this.chromeCastDeviceDisconnected(cb);
+    this.chromeCastDeviceConnected(cb);
+    this.chromeCastDeviceDisconnected(cb);
   }
 
   stopConnectionListener() {
