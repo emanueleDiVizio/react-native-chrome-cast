@@ -13,7 +13,7 @@ export default class ChromeCastPlayback {
     );
   }
 
-  startMediaLoadedLister(cb) {
+  startMediaLoadedListener(cb) {
     this.mediaLoaded = this.onChromeCastMediaLoaded(cb);
   }
 
