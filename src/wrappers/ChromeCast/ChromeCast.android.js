@@ -5,55 +5,67 @@ const NativeChromeCast = NativeModules.RNChromeCast;
 export default class ChromeCastWrapper {
   constructor() {
     this.isAvailable = true;
-    this.this.runIfAvailable = (func) => {
-      if (this.isAvailable) {
-        return func().then(() => Promise.resolve(this));
-      }
-      return Promise.reject(new Error('Player not available.'));
-    };
-
-    this.setUnavailable = () => {
-      this.isAvailable = false;
-      return Promise.resolve(this);
-    };
-
-    this.setAvailable = () => {
-      this.isAvailable = true;
-      return Promise.resolve(this);
-    };
   }
 
+  runIfAvailable = (func) => {
+    if (this.isAvailable) {
+      return func().then(() => Promise.resolve(this));
+    }
+    return Promise.reject(new Error('Player not available.'));
+  };
 
-  loadVideo = video => NativeChromeCast.loadVideo(
-    video.url,
-    video.title,
-    video.subtitle,
-    video.image,
-    video.duration,
-    false,
-    video.mimeType,
-  ).then(() => this.setAvailable());
+  setUnavailable = () => {
+    this.isAvailable = false;
+    return Promise.resolve(this);
+  };
 
-  loadLiveVideo = video => NativeChromeCast.loadVideo(
-    video.url,
-    video.title,
-    video.subtitle,
-    video.image,
-    0,
-    true,
-    video.mimeType,
-  ).then(() => this.setAvailable());
+  setAvailable = () => {
+    this.isAvailable = true;
+    return Promise.resolve(this);
+  };
 
-  start = progress => this.runIfAvailable(() => NativeChromeCast.start(progress));
+  loadVideo(video) {
+    return NativeChromeCast.loadVideo(
+      video.url,
+      video.title,
+      video.subtitle,
+      video.image,
+      video.duration,
+      false,
+      video.mimeType,
+    ).then(() => this.setAvailable());
+  }
 
-  play = () => this.runIfAvailable(() => NativeChromeCast.play());
+  loadLiveVideo(video) {
+    return NativeChromeCast.loadVideo(
+      video.url,
+      video.title,
+      video.subtitle,
+      video.image,
+      0,
+      true,
+      video.mimeType,
+    ).then(() => this.setAvailable());
+  }
 
+  start(progress) {
+    return this.runIfAvailable(() => NativeChromeCast.start(progress));
+  }
 
-  pause = () => this.runIfAvailable(() => NativeChromeCast.pause());
+  play() {
+    return this.runIfAvailable(() => NativeChromeCast.play());
+  }
+  pause() {
+    return this.runIfAvailable(() => NativeChromeCast.pause());
+  }
 
-  stop = () => this.runIfAvailable(() =>
-    NativeChromeCast.stop().then(() => this.setUnavailable()),
-  );
+  stop() {
+    return this.runIfAvailable(() =>
+      NativeChromeCast.stop().then(() => this.setUnavailable()),
+    );
+  }
 
-  showChromeCastActivity = () => NativeChromeCast.showChromeCastActivity();
+  showChromeCastActivity() {
+    return NativeChromeCast.showChromeCastActivity();
+  }
 }
