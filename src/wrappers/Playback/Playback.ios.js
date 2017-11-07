@@ -8,7 +8,7 @@ export default class ChromeCastPlayback {
   onChromeCastMediaLoaded(cb) {
     this.mediaLoaded = ChromecastEmitter.addListener(PlaybackStatus.MEDIA_LOADED, () =>
       cb({
-        playing: true,
+        casting: true,
       }),
     );
   }
