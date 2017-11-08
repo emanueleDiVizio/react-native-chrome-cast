@@ -3,8 +3,8 @@ package com.emadivizio.reactnativechromecast.sdk.cast.util;
 import android.content.Context;
 import android.content.Intent;
 
-import com.emadivizio.reactnativechromecast.react.events.ReactCastPlaybackListener;
-import com.facebook.react.bridge.ReactContext;
+import com.emadivizio.reactnativechromecast.eventBus.playback.PlaybackActionsListener;
+import com.emadivizio.reactnativechromecast.eventBus.playback.PlaybackEventBridge;
 import com.google.android.gms.cast.framework.Session;
 import com.google.android.gms.cast.framework.media.MediaIntentReceiver;
 
@@ -14,12 +14,11 @@ import com.google.android.gms.cast.framework.media.MediaIntentReceiver;
 
 public class CastMediaIntentReceiver extends MediaIntentReceiver {
 
-    private ReactCastPlaybackListener reactCastPlaybackListener;
+    private PlaybackActionsListener reactCastPlaybackListener = new PlaybackEventBridge();
 
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        reactCastPlaybackListener = new ReactCastPlaybackListener((ReactContext) context);
         super.onReceive(context, intent);
     }
 

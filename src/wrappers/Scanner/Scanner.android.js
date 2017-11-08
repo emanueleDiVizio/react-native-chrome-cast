@@ -1,21 +1,28 @@
 import { DeviceEventEmitter, NativeModules } from 'react-native';
 
-import { Events } from '../../utils/constants';
+import {
+  Events,
+  CastScanConstants,
+  CastSessionConstants,
+} from '../../utils/constants';
 
 const NativeChromeCast = NativeModules.RNChromeCast;
 
 export default class ChromeCastScanner {
   listenForSessionEvents = cb =>
     DeviceEventEmitter.addListener(Events.CAST_SESSION, (e) => {
-      cb({ status: e.SESSION_STATUS, message: e.SESSION_STATUS_MESSAGE });
+      cb({
+        status: e[CastSessionConstants.SESSION_STATUS],
+        message: e[CastSessionConstants.SESSION_STATUS_MESSAGE],
+      });
     });
 
   listenForScanEvent = cb =>
     DeviceEventEmitter.addListener(Events.CAST_SCAN, (e) => {
       cb({
-        deviceConnected: e.DEVICE_CONNECTED,
-        deviceConnecting: e.DEVICE_CONNECTING,
-        devicesAvailable: e.DEVICES_AVAILABLE,
+        deviceConnected: e[CastScanConstants.DEVICE_CONNECTED],
+        deviceConnecting: e[CastScanConstants.DEVICE_CONNECTING],
+        devicesAvailable: e[CastScanConstants.DEVICES_AVAILABLE],
       });
     });
 

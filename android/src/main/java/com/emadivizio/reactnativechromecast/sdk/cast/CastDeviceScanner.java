@@ -5,6 +5,8 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.view.KeyEvent;
 
+import com.emadivizio.reactnativechromecast.eventBus.castScan.CastScanEventListener;
+import com.emadivizio.reactnativechromecast.eventBus.castSession.CastSessionEventListener;
 import com.google.android.gms.cast.framework.CastContext;
 import com.google.android.gms.cast.framework.CastSession;
 import com.google.android.gms.cast.framework.CastState;
@@ -61,7 +63,7 @@ public class CastDeviceScanner {
     /**
      * Resume Cast Manager.
      */
-    public void startScanning(CastScanListener castScanListener, SessionStateListener sessionStateListener) {
+    public void startScanning(CastScanEventListener castScanListener, CastSessionEventListener sessionStateListener) {
         addListeners(castScanListener, sessionStateListener);
         getCurrentCastSession();
     }
@@ -99,7 +101,7 @@ public class CastDeviceScanner {
     /**
      * Add listeners to cast context.
      */
-    private void addListeners(CastScanListener listener, SessionStateListener sessionStateListener) {
+    private void addListeners(CastScanEventListener listener, CastSessionEventListener sessionStateListener) {
         mSessionManagerListener = setUpSessionManagerListener(sessionStateListener);
         mCastStateListener = setUpCastStateListener(listener);
         getCastContext().addCastStateListener(mCastStateListener);
@@ -124,7 +126,7 @@ public class CastDeviceScanner {
      * @param listener Listener to call.
      */
     @NonNull
-    private CastStateListener setUpCastStateListener(final CastScanListener listener) {
+    private CastStateListener setUpCastStateListener(final CastScanEventListener listener) {
         return new CastStateListener() {
             @Override
             public void onCastStateChanged(int newState) {
@@ -156,7 +158,7 @@ public class CastDeviceScanner {
      * @param listener Listener to call.
      */
     @NonNull
-    private SessionManagerListener<CastSession> setUpSessionManagerListener(final SessionStateListener listener) {
+    private SessionManagerListener<CastSession> setUpSessionManagerListener(final CastSessionEventListener listener) {
         return new SessionManagerListener<CastSession>() {
             @Override
             public void onSessionStarting(CastSession castSession) {
@@ -211,39 +213,6 @@ public class CastDeviceScanner {
 
             }
         };
-    }
-
-
-    public interface CastScanListener {
-        void onNoDevicesAvailable();
-
-        void onDeviceConnecting();
-
-        void onDeviceConnected();
-
-        void onDeviceNotConnected();
-
-    }
-
-
-    public interface SessionStateListener {
-        void onSessionStarting();
-
-        void onSessionStarted(String var2);
-
-        void onSessionStartFailed(int var2);
-
-        void onSessionEnding();
-
-        void onSessionEnded(int var2);
-
-        void onSessionResuming(String var2);
-
-        void onSessionResumed(boolean var2);
-
-        void onSessionResumeFailed(int var2);
-
-        void onSessionSuspended(int var2);
     }
 
 

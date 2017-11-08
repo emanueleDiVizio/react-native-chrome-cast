@@ -1,18 +1,15 @@
-export const SessionStatus = Object.freeze({
-  STARTING: 0,
-  STARTED: 1,
-  START_FAILED: 2,
-  ENDING: 3,
-  ENDED: 4,
-  RESUMING: 5,
-  RESUMED: 6,
-  RESUME_FAILED: 7,
-  SUSPENDED: 8,
-});
+import { NativeModules } from 'react-native';
+
+const NativeChromeCast = NativeModules.RNChromeCast;
+
+export const CastScanConstants = NativeChromeCast.CAST_SCAN;
+export const CastSessionConstants = NativeChromeCast.CAST_SESSION;
+export const CastScreenConstants = NativeChromeCast.CAST_SCREEN;
+export const CastPlaybackConstants = NativeChromeCast.CAST_PLAYBACK;
 
 export const Events = Object.freeze({
-  CAST_PLAYBACK: 'CastPlaybackEvent',
-  CAST_SCAN: 'CastScanEvent',
-  CAST_SCREEN: 'CastScreenEvent',
-  CAST_SESSION: 'CastSessionEvent',
+  CAST_PLAYBACK: CastPlaybackConstants.EVENT_NAME,
+  CAST_SCAN: CastScanConstants.EVENT_NAME,
+  CAST_SCREEN: CastScreenConstants.EVENT_NAME,
+  CAST_SESSION: CastPlaybackConstants.EVENT_NAME,
 });

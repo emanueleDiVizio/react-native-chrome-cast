@@ -10,6 +10,8 @@ import android.view.MenuItem;
 
 import com.emadivizio.reactnativechromecast.R;
 import com.emadivizio.reactnativechromecast.sdk.cast.util.Video;
+import com.emadivizio.reactnativechromecast.eventBus.castScan.CastScanEventListener;
+import com.emadivizio.reactnativechromecast.eventBus.castSession.CastSessionEventListener;
 import com.google.android.gms.cast.framework.CastButtonFactory;
 
 
@@ -20,10 +22,10 @@ import com.google.android.gms.cast.framework.CastButtonFactory;
 public class CastManager {
     private CastDeviceScanner castDeviceScanner;
     private Context context;
-    private CastDeviceScanner.SessionStateListener sessionStateListener;
-    private CastDeviceScanner.CastScanListener castScanListener;
+    private CastSessionEventListener sessionStateListener;
+    private CastScanEventListener castScanListener;
 
-    public CastManager(Context context, CastDeviceScanner.SessionStateListener listener, CastDeviceScanner.CastScanListener castScanListener) {
+    public CastManager(Context context, CastSessionEventListener listener, CastScanEventListener castScanListener) {
         castDeviceScanner = new CastDeviceScanner(context);
         this.context = context;
         this.sessionStateListener = listener;

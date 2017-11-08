@@ -1,11 +1,14 @@
-import { DeviceEventEmitter, NativeModules } from 'react-native';
+import { DeviceEventEmitter } from 'react-native';
 
-import { Events } from '../../utils/constants';
+import { Events, CastPlaybackConstants } from '../../utils/constants';
 
 export default class ChromeCastPlayback {
   listenForPlaybackEvents = cb =>
     DeviceEventEmitter.addListener(Events.CAST_PLAYBACK, (e) => {
-      cb({ action: e.PLAYBACK_ACTION, arg: e[e.PLAYBACK_ACTION] });
+      cb({
+        action: e[CastPlaybackConstants.PLAYBACK_ACTION],
+        arg: e[e[CastPlaybackConstants.PLAYBACK_ACTION]],
+      });
     });
 
   startScan(cb) {
