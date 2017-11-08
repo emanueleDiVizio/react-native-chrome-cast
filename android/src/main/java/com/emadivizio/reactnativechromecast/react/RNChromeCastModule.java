@@ -102,6 +102,7 @@ public class RNChromeCastModule extends ReactContextBaseJavaModule {
   @ReactMethod
   public void showChromeCastActivity(){
     Intent intent = new Intent(reactContext, ExpandedControlsActivity.class);
+    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     reactContext.startActivity(intent);
   }
 
