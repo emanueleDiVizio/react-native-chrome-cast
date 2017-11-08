@@ -4,12 +4,14 @@ import { PlaybackStatus } from '../../utils/iosConstants';
 const { GoogleCast } = NativeModules;
 const ChromecastEmitter = new NativeEventEmitter(GoogleCast);
 
-export default class ChromeCastPlayback {
+export default class PlaybackListener {
   onChromeCastMediaLoaded(cb) {
-    this.mediaLoaded = ChromecastEmitter.addListener(PlaybackStatus.MEDIA_LOADED, () =>
-      cb({
-        casting: true,
-      }),
+    this.mediaLoaded = ChromecastEmitter.addListener(
+      PlaybackStatus.MEDIA_LOADED,
+      () =>
+        cb({
+          casting: true,
+        }),
     );
   }
 

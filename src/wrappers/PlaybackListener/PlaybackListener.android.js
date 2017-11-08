@@ -2,7 +2,7 @@ import { DeviceEventEmitter } from 'react-native';
 
 import { Events, CastPlaybackConstants } from '../../utils/constants';
 
-export default class ChromeCastPlayback {
+export default class PlaybackListener {
   listenForPlaybackEvents = cb =>
     DeviceEventEmitter.addListener(Events.CAST_PLAYBACK, (e) => {
       cb({
@@ -11,11 +11,11 @@ export default class ChromeCastPlayback {
       });
     });
 
-  startScan(cb) {
+  startListening(cb) {
     this.listener = this.listenForPlaybackEvents(cb);
   }
 
-  stopScan() {
+  stopListening() {
     this.listener.remove();
   }
 }

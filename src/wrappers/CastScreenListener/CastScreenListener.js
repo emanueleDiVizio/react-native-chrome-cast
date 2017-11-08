@@ -8,11 +8,11 @@ export default class ChromeCastPlayback {
       cb({ action: e[CastScreenConstants.CAST_SCREEN_ACTION] });
     });
 
-  startScan(cb) {
+  startListening(cb) {
     this.listener = this.listenForPlaybackEvents(cb);
   }
 
-  stopScan() {
+  stopListening() {
     this.listener.remove();
   }
 }
