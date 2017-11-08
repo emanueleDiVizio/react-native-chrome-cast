@@ -34,4 +34,15 @@ public class ReactActionEvent<T> extends ReactEvent{
     public T getArgument() {
         return argument;
     }
+
+
+    @Override
+    public String toString() {
+        return "ReactActionEvent{" +
+            "actionType='" + actionType + '\'' +
+            ", action='" + action + '\'' +
+            ", argType=" + argType +
+            ", argument=" + argument +
+            '}';
+    }
 }

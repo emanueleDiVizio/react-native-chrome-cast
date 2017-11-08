@@ -11,5 +11,9 @@ export const DevicesStatus = {
 
 export const PlaybackStatus = {
   MEDIA_LOADED: GoogleCast.MEDIA_LOADED,
+};
 
+export const CastSessionConstants = {
+  SESSION_STARTED: 0,
+  SESSION_ENDED: 4,
 };

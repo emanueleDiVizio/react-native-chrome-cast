@@ -1,5 +1,5 @@
 import { NativeModules, NativeEventEmitter } from 'react-native';
-import { PlaybackStatus } from '../../utils/iosConstants';
+import { PlaybackStatus } from '../../utils/constants';
 
 const { GoogleCast } = NativeModules;
 const ChromecastEmitter = new NativeEventEmitter(GoogleCast);
@@ -10,8 +10,8 @@ export default class PlaybackListener {
       PlaybackStatus.MEDIA_LOADED,
       () =>
         cb({
-          casting: true,
-        }),
+          casting: true
+        })
     );
   }
 

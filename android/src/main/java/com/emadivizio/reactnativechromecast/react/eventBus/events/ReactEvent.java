@@ -15,5 +15,12 @@ public class ReactEvent {
     public String getChannel() {
         return channel;
     }
+
+    @Override
+    public String toString() {
+        return "ReactEvent{" +
+            "channel='" + channel + '\'' +
+            '}';
+    }
 }
 

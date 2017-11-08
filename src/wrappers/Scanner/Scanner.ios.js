@@ -1,22 +1,23 @@
 import { NativeModules, NativeEventEmitter } from 'react-native';
-import { DevicesStatus } from '../../utils/iosConstants';
+import { DevicesStatus } from '../../utils/constants';
 
 const { GoogleCast } = NativeModules;
 
 const ChromecastEmitter = new NativeEventEmitter(GoogleCast);
 
-
 export default class ChromeCastScanner {
-  chromeCastDeviceAvailable = cb => ChromecastEmitter.addListener(
-    DevicesStatus.DEVICE_AVAILABLE,
-    e => cb({
-      devicesAvailable: e.device_available,
-    }));
-  chromeCastDeviceUpdated = cb => ChromecastEmitter.addListener(
-    DevicesStatus.DEVICES_UPDATED,
-    e => cb({
-      devicesList: e.devices,
-    }));
+  chromeCastDeviceAvailable = cb =>
+    ChromecastEmitter.addListener(DevicesStatus.DEVICE_AVAILABLE, e =>
+      cb({
+        devicesAvailable: e.device_available,
+      }),
+    );
+  chromeCastDeviceUpdated = cb =>
+    ChromecastEmitter.addListener(DevicesStatus.DEVICES_UPDATED, e =>
+      cb({
+        devicesList: e.devices,
+      }),
+    );
 
   startScan(cb) {
     GoogleCast.startScan();

@@ -20,4 +20,11 @@ public final class ReactDataEvent extends ReactEvent {
     public final List<Field<?>> getFields() {
         return fields;
     }
+
+    @Override
+    public String toString() {
+        return "ReactDataEvent{" +
+            "fields=" + fields +
+            '}';
+    }
 }

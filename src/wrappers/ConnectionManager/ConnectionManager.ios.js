@@ -1,6 +1,6 @@
 import { NativeModules, NativeEventEmitter } from 'react-native';
-import { DevicesStatus } from '../../utils/iosConstants';
-import { CastSessionConstants } from '../../utils/constants';
+
+import { DevicesStatus, CastSessionConstants } from '../../utils/constants';
 
 const { GoogleCast } = NativeModules;
 

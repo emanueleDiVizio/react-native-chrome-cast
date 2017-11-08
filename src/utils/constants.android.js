@@ -11,5 +11,5 @@ export const Events = Object.freeze({
   CAST_PLAYBACK: CastPlaybackConstants.EVENT_NAME,
   CAST_SCAN: CastScanConstants.EVENT_NAME,
   CAST_SCREEN: CastScreenConstants.EVENT_NAME,
-  CAST_SESSION: CastPlaybackConstants.EVENT_NAME,
+  CAST_SESSION: CastSessionConstants.EVENT_NAME,
 });
