@@ -49,7 +49,7 @@ public class CastOptionsProvider implements OptionsProvider {
 //                .setExpandedControllerActivityClassName(ExpandedControlsActivity.class.getName())
                 .build();
         return new CastOptions.Builder()
-                .setReceiverApplicationId(context.getString(R.string.app_id))
+                .setReceiverApplicationId(context.getString(R.string.chromecast_app_id))
                 .setCastMediaOptions(mediaOptions)
                 .build();
     }
