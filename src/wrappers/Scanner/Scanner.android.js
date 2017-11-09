@@ -14,6 +14,7 @@ export default class ChromeCastScanner {
       cb({
         status: e[CastSessionConstants.SESSION_STATUS],
         message: e[CastSessionConstants.SESSION_STATUS_MESSAGE],
+        argument: e[CastSessionConstants.SESSION_STATUS_ARG],
       });
     });
 

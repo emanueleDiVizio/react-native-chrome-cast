@@ -6,6 +6,7 @@ import com.emadivizio.reactnativechromecast.react.eventBus.EventBusBridge;
 
 import static com.emadivizio.reactnativechromecast.constants.CastScreen.CAST_SCREEN_ACTION;
 
+
 /**
  * Created by Emanuele on 08/11/2017.
  */
@@ -17,11 +18,11 @@ public class CastScreenBridge extends EventBusBridge implements CastScreenAction
 
     @Override
     public void onStart() {
-        sendEvent(CAST_SCREEN_ACTION, CastScreen.ON_SCREEN_OPEN, DataType.NULL);
+        sendEvent(CAST_SCREEN_ACTION, CastScreen.ON_SCREEN_OPEN, DataType.STRING);
     }
 
     @Override
     public void onStop() {
-        sendEvent(CastScreen.CAST_SCREEN_ACTION, CastScreen.ON_SCREEN_CLOSE, DataType.NULL);
+        sendEvent(CAST_SCREEN_ACTION, CastScreen.ON_SCREEN_CLOSE, DataType.STRING);
     }
 }

@@ -7,19 +7,19 @@ package com.emadivizio.reactnativechromecast.eventBus.castSession;
 public interface CastSessionEventListener {
     void onSessionStarting();
 
-    void onSessionStarted(String var2);
+    void onSessionStarted(String sessionId);
 
-    void onSessionStartFailed(int var2);
+    void onSessionStartFailed(int error);
 
     void onSessionEnding();
 
-    void onSessionEnded(int var2);
+    void onSessionEnded(int error);
 
-    void onSessionResuming(String var2);
+    void onSessionResuming(String sessionId);
 
-    void onSessionResumed(boolean var2);
+    void onSessionResumed(boolean wasSuspended);
 
-    void onSessionResumeFailed(int var2);
+    void onSessionResumeFailed(int error);
 
-    void onSessionSuspended(int var2);
+    void onSessionSuspended(int reason);
 }

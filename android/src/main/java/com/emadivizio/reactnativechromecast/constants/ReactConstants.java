@@ -32,6 +32,9 @@ public class ReactConstants {
         castSessionMap.put(CastSession.SESSION_RESUME_FAILED_STRING, CastSession.SESSION_RESUME_FAILED);
         castSessionMap.put(CastSession.SESSION_SUSPENDED_STRING, CastSession.SESSION_SUSPENDED);
 
+        castSessionMap.put(CastSession.SESSION_STATUS_ARG, CastSession.SESSION_STATUS_ARG);
+
+
 
 
         final Map<String, Object> castScanMap = new HashMap<>();

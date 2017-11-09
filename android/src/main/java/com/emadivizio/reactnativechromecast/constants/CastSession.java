@@ -35,7 +35,11 @@ public final class CastSession {
   public static final String SESSION_SUSPENDED_STRING = "SESSION_SUSPENDED";
 
 
-  
+  public static final String SESSION_STATUS_ARG = "SESSION_STATUS_ARG";
+
+
+
+
   public static String statusToMessage(int status) {
     switch (status) {
       case SESSION_STARTING:
