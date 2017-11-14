@@ -24,7 +24,6 @@ public class RNChromeCastModule extends ReactContextBaseJavaModule {
 
   private CastManager manager;
   private ReactApplicationContext reactContext;
-  private CastPlayer castPlayer;
   private ReactEventBusBridge reactEventBusBridge;
 
 
@@ -33,9 +32,12 @@ public class RNChromeCastModule extends ReactContextBaseJavaModule {
     this.manager = new CastManager(reactContext, new CastSessionEventBridge(), new CastScanEventBridge());
     this.reactEventBusBridge = new ReactEventBusBridge(reactContext);
     this.reactContext = reactContext;
-    this.castPlayer = manager.getCastPlayer();
   }
 
+
+  private CastPlayer castPlayer(){
+    return manager.getCastPlayer();
+  }
   @Override
   public Map<String, Object> getConstants() {
     return ReactConstants.buildConstantsMap();
@@ -114,7 +116,7 @@ public class RNChromeCastModule extends ReactContextBaseJavaModule {
     runOnUiThread(new Runnable() {
       @Override
       public void run() {
-        castPlayer.loadVideo(manager.buildVideoInfo(url, title, subtitle, imageUri, duration, isLive, mimeType, progress),  new ControlsCallback(promise));
+        castPlayer().loadVideo(manager.buildVideoInfo(url, title, subtitle, imageUri, duration, isLive, mimeType, progress),  new ControlsCallback(promise));
       }
     });
 
@@ -126,7 +128,7 @@ public class RNChromeCastModule extends ReactContextBaseJavaModule {
     runOnUiThread(new Runnable() {
       @Override
       public void run() {
-        castPlayer.controls().play(new ControlsCallback(promise));
+        castPlayer().controls().play(new ControlsCallback(promise));
       }
     });
   }
@@ -136,7 +138,7 @@ public class RNChromeCastModule extends ReactContextBaseJavaModule {
     runOnUiThread(new Runnable() {
       @Override
       public void run() {
-        castPlayer.controls().toggle(new ControlsCallback(promise));
+        castPlayer().controls().toggle(new ControlsCallback(promise));
       }
     });
   }
@@ -147,7 +149,7 @@ public class RNChromeCastModule extends ReactContextBaseJavaModule {
     runOnUiThread(new Runnable() {
       @Override
       public void run() {
-        castPlayer.controls().pause(new ControlsCallback(promise));
+        castPlayer().controls().pause(new ControlsCallback(promise));
       }
     });
   }
@@ -158,7 +160,7 @@ public class RNChromeCastModule extends ReactContextBaseJavaModule {
     runOnUiThread(new Runnable() {
       @Override
       public void run() {
-        castPlayer.controls().stop(new ControlsCallback(promise));
+        castPlayer().controls().stop(new ControlsCallback(promise));
       }
     });
   }
@@ -168,7 +170,7 @@ public class RNChromeCastModule extends ReactContextBaseJavaModule {
     runOnUiThread(new Runnable() {
       @Override
       public void run() {
-        castPlayer.controls().seek((long) position, new ControlsCallback(promise));
+        castPlayer().controls().seek((long) position, new ControlsCallback(promise));
       }
     });
   }
