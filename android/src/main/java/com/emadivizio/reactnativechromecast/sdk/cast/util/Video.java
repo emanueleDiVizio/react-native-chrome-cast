@@ -8,8 +8,9 @@ public class Video {
   private int duration;
   private StreamType type;
   private String mimeType;
+  private int progress;
 
-  public Video(String url, String title, String subtitle, String imageUri, int duration, StreamType type, String mimeType) {
+  public Video(String url, String title, String subtitle, String imageUri, int duration, StreamType type, String mimeType, int progress) {
     this.url = url;
     this.title = title;
     this.subtitle = subtitle;
@@ -17,6 +18,7 @@ public class Video {
     this.duration = duration;
     this.type = type;
     this.mimeType = mimeType;
+    this.progress = progress;
   }
 
 
@@ -46,6 +48,10 @@ public class Video {
 
   public String getMimeType() {
     return mimeType;
+  }
+
+  public int getProgress() {
+    return progress;
   }
 
   public enum StreamType {

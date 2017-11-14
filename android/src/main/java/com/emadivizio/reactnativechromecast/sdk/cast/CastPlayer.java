@@ -6,6 +6,7 @@ import com.emadivizio.reactnativechromecast.sdk.cast.util.Video;
 import com.google.android.gms.cast.MediaInfo;
 import com.google.android.gms.cast.MediaMetadata;
 import com.google.android.gms.cast.framework.CastSession;
+import com.google.android.gms.cast.framework.media.RemoteMediaClient;
 import com.google.android.gms.common.images.WebImage;
 
 /**
@@ -16,9 +17,11 @@ public class CastPlayer {
 
 
   private CastSession mCastSession;
+  private RemoteMediaClient mRemoteMediaClient;
 
   public CastPlayer(CastSession mCastSession) {
     this.mCastSession = mCastSession;
+    this.mRemoteMediaClient = mCastSession.getRemoteMediaClient();
   }
 
 
@@ -53,8 +56,13 @@ public class CastPlayer {
   }
 
 
-  public CastControls loadVideo(Video video){
-    return new CastControls(mCastSession.getRemoteMediaClient(), buildMediaInfo(video));
+  public void loadVideo(Video video, ControlsCallback controlsCallback){
+    mRemoteMediaClient.load(buildMediaInfo(video), true, video.getProgress()).setResultCallback(new ResultCallback(controlsCallback));
+  }
+
+
+  public CastControls controls(){
+    return new CastControls(mRemoteMediaClient);
   }
 
 
