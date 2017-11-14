@@ -8,8 +8,9 @@ import com.emadivizio.reactnativechromecast.constants.ReactConstants;
 import com.emadivizio.reactnativechromecast.eventBus.castScan.CastScanEventBridge;
 import com.emadivizio.reactnativechromecast.eventBus.castSession.CastSessionEventBridge;
 import com.emadivizio.reactnativechromecast.react.eventBus.ReactEventBusBridge;
-import com.emadivizio.reactnativechromecast.sdk.cast.CastControls;
 import com.emadivizio.reactnativechromecast.sdk.cast.CastManager;
+import com.emadivizio.reactnativechromecast.sdk.cast.CastPlayer;
+import com.emadivizio.reactnativechromecast.sdk.cast.ResultError;
 import com.emadivizio.reactnativechromecast.sdk.ui.ExpandedControlsActivity;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -23,7 +24,7 @@ public class RNChromeCastModule extends ReactContextBaseJavaModule {
 
   private CastManager manager;
   private ReactApplicationContext reactContext;
-  private CastControls castControls;
+  private CastPlayer castPlayer;
   private ReactEventBusBridge reactEventBusBridge;
 
 
@@ -32,6 +33,7 @@ public class RNChromeCastModule extends ReactContextBaseJavaModule {
     this.manager = new CastManager(reactContext, new CastSessionEventBridge(), new CastScanEventBridge());
     this.reactEventBusBridge = new ReactEventBusBridge(reactContext);
     this.reactContext = reactContext;
+    this.castPlayer = manager.getCastPlayer();
   }
 
   @Override
@@ -108,29 +110,14 @@ public class RNChromeCastModule extends ReactContextBaseJavaModule {
 
 
   @ReactMethod
-  public void loadVideo(final String url, final String title, final String subtitle, final String imageUri, final Integer duration, final Boolean isLive, final String mimeType, final Promise promise) {
+  public void loadVideo(final String url, final String title, final String subtitle, final String imageUri, final Integer duration, final Boolean isLive, final String mimeType, final Integer progress, final Promise promise) {
     runOnUiThread(new Runnable() {
       @Override
       public void run() {
-        try {
-          castControls = manager.loadVideo(url, title, subtitle, imageUri, duration, isLive, mimeType);
-          promise.resolve(null);
-        } catch (Exception e) {
-          promise.reject(e);
-        }
+        castPlayer.loadVideo(manager.buildVideoInfo(url, title, subtitle, imageUri, duration, isLive, mimeType, progress),  new ControlsCallback(promise));
       }
     });
 
-  }
-
-  @ReactMethod
-  public void start(final Integer position, final Promise promise) {
-    runOnUiThread(new Runnable() {
-      @Override
-      public void run() {
-        castControls.load(true, position, new ControlsCallback(promise));
-      }
-    });
   }
 
 
@@ -139,7 +126,17 @@ public class RNChromeCastModule extends ReactContextBaseJavaModule {
     runOnUiThread(new Runnable() {
       @Override
       public void run() {
-        castControls.play(new ControlsCallback(promise));
+        castPlayer.controls().play(new ControlsCallback(promise));
+      }
+    });
+  }
+
+  @ReactMethod
+  public void toggle(final Promise promise) {
+    runOnUiThread(new Runnable() {
+      @Override
+      public void run() {
+        castPlayer.controls().toggle(new ControlsCallback(promise));
       }
     });
   }
@@ -150,7 +147,7 @@ public class RNChromeCastModule extends ReactContextBaseJavaModule {
     runOnUiThread(new Runnable() {
       @Override
       public void run() {
-        castControls.pause(new ControlsCallback(promise));
+        castPlayer.controls().pause(new ControlsCallback(promise));
       }
     });
   }
@@ -161,7 +158,7 @@ public class RNChromeCastModule extends ReactContextBaseJavaModule {
     runOnUiThread(new Runnable() {
       @Override
       public void run() {
-        castControls.stop(new ControlsCallback(promise));
+        castPlayer.controls().stop(new ControlsCallback(promise));
       }
     });
   }
@@ -171,13 +168,13 @@ public class RNChromeCastModule extends ReactContextBaseJavaModule {
     runOnUiThread(new Runnable() {
       @Override
       public void run() {
-        castControls.seek((long) position, new ControlsCallback(promise));
+        castPlayer.controls().seek((long) position, new ControlsCallback(promise));
       }
     });
   }
 
 
-  private class ControlsCallback implements CastControls.ControlsCallback {
+  private class ControlsCallback implements com.emadivizio.reactnativechromecast.sdk.cast.ControlsCallback {
     private Promise promise;
 
     public ControlsCallback(Promise promise) {
@@ -190,7 +187,7 @@ public class RNChromeCastModule extends ReactContextBaseJavaModule {
     }
 
     @Override
-    public void onFailure(CastControls.ResultError error) {
+    public void onFailure(ResultError error) {
       promise.reject(String.valueOf(error.getCode()), error.getMessage());
     }
   }

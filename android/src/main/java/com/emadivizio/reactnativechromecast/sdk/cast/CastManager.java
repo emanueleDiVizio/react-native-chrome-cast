@@ -9,9 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.emadivizio.reactnativechromecast.R;
-import com.emadivizio.reactnativechromecast.sdk.cast.util.Video;
 import com.emadivizio.reactnativechromecast.eventBus.castScan.CastScanEventListener;
 import com.emadivizio.reactnativechromecast.eventBus.castSession.CastSessionEventListener;
+import com.emadivizio.reactnativechromecast.sdk.cast.util.Video;
 import com.google.android.gms.cast.framework.CastButtonFactory;
 
 
@@ -70,8 +70,14 @@ public class CastManager {
         CastButtonFactory.setUpMediaRouteButton(context, mediaRouteButton);
     }
 
-    public CastControls loadVideo(String url, String title, String subtitle, String imageUri, int duration, boolean isLive, String mimeType) {
-        return new CastPlayer(castDeviceScanner.getCurrentCastSession()).loadVideo(new Video(url, title, subtitle, imageUri, duration, isLive ? Video.StreamType.LIVE : Video.StreamType.BUFFER, mimeType));
+
+    public CastPlayer getCastPlayer(){
+         return new CastPlayer(castDeviceScanner.getCurrentCastSession());
+    }
+
+
+    public Video buildVideoInfo(String url, String title, String subtitle, String imageUri, int duration, boolean isLive, String mimeType,int progress){
+        return new Video(url, title, subtitle, imageUri, duration, isLive ? Video.StreamType.LIVE : Video.StreamType.BUFFER, mimeType, progress);
     }
 
 

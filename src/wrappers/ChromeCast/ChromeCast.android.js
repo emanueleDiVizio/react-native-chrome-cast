@@ -33,6 +33,7 @@ export default class ChromeCastWrapper {
       video.duration,
       false,
       video.mimeType,
+      video.progress,
     ).then(() => this.setAvailable());
   }
 
@@ -45,11 +46,8 @@ export default class ChromeCastWrapper {
       0,
       true,
       video.mimeType,
+      0,
     ).then(() => this.setAvailable());
-  }
-
-  start(progress) {
-    return this.runIfAvailable(() => NativeChromeCast.start(progress));
   }
 
   play() {
@@ -57,6 +55,10 @@ export default class ChromeCastWrapper {
   }
   pause() {
     return this.runIfAvailable(() => NativeChromeCast.pause());
+  }
+
+  toggle() {
+    return this.runIfAvailable(() => NativeChromeCast.toggle());
   }
 
   stop() {
