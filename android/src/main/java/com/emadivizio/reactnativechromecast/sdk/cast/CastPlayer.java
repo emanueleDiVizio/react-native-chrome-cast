@@ -16,12 +16,12 @@ import com.google.android.gms.common.images.WebImage;
 public class CastPlayer {
 
 
-  private CastSession mCastSession;
-  private RemoteMediaClient mRemoteMediaClient;
+  private RemoteMediaClient mRemoteMediaClient = null;
 
   public CastPlayer(CastSession mCastSession) {
-    this.mCastSession = mCastSession;
-    this.mRemoteMediaClient = mCastSession.getRemoteMediaClient();
+    if(mCastSession != null){
+      this.mRemoteMediaClient = mCastSession.getRemoteMediaClient();
+    }
   }
 
 
@@ -57,7 +57,9 @@ public class CastPlayer {
 
 
   public void loadVideo(Video video, ControlsCallback controlsCallback){
-    mRemoteMediaClient.load(buildMediaInfo(video), true, video.getProgress()).setResultCallback(new ResultCallback(controlsCallback));
+    if(mRemoteMediaClient != null){
+      mRemoteMediaClient.load(buildMediaInfo(video), true, video.getProgress()).setResultCallback(new ResultCallback(controlsCallback));
+    }
   }
 
 
