@@ -19,6 +19,7 @@ package com.emadivizio.reactnativechromecast.sdk.cast.util;
 import android.content.Context;
 
 import com.emadivizio.reactnativechromecast.R;
+import com.emadivizio.reactnativechromecast.sdk.ui.ExpandedControlsActivity;
 import com.google.android.gms.cast.framework.CastOptions;
 import com.google.android.gms.cast.framework.OptionsProvider;
 import com.google.android.gms.cast.framework.SessionProvider;
@@ -46,7 +47,7 @@ public class CastOptionsProvider implements OptionsProvider {
                 .setMediaIntentReceiverClassName(CastMediaIntentReceiver.class.getName())
 //                .setImagePicker(new ImagePickerImpl())
                 .setNotificationOptions(notificationOptions)
-//                .setExpandedControllerActivityClassName(ExpandedControlsActivity.class.getName())
+                .setExpandedControllerActivityClassName(ExpandedControlsActivity.class.getName())
                 .build();
         return new CastOptions.Builder()
                 .setReceiverApplicationId(context.getString(R.string.chromecast_app_id))
