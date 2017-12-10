@@ -1,14 +1,12 @@
 {
-  "name": "react-native-chrome-cast-v3",
-  "version": "1.0.1",
+  "name": "react-native-chrome-cast",
+  "version": "1.0.4",
   "description": "",
-  "main": "index.android.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "react-native"
-  ],
+  "keywords": ["react-native"],
   "author": "",
   "license": "",
   "peerDependencies": {
